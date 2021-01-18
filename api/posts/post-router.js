@@ -17,10 +17,22 @@ router.get('/', restricted, async (_, res) => {
 });
 
 // 🌕   [GET] - all posts for single location
-router.get('/z/:zipCode', restricted, async (req, res) => {
+router.get('/l/:zipCode', restricted, async (req, res) => {
 	const { zipCode } = req.params;
 	try {
 		const posts = await Posts.findByZipCode(zipCode);
+		res.status(200).json(posts);
+	} catch (err) {
+		console.log(err.message);
+		res.status(500).json({ errMessage: err.message });
+	}
+});
+
+// 🌕   [GET] - all posts for single location
+router.get('/l/:location_id', restricted, async (req, res) => {
+	const { location_id } = req.params;
+	try {
+		const posts = await Posts.findByLocationId(location_id);
 		res.status(200).json(posts);
 	} catch (err) {
 		console.log(err.message);
