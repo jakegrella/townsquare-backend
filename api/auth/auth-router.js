@@ -44,7 +44,7 @@ router.post('/login', validateCredentials, async (req, res) => {
 			process.env.LOCATION_ID = user.location_id;
 			res.status(200).json({
 				message: `welcome ${user.username}`,
-				user: user.username,
+				user: user,
 				token: token,
 			});
 		} else {
