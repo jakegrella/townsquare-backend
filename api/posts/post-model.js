@@ -13,6 +13,13 @@ module.exports = {
 			.where('l.zipCode', zipCode);
 	},
 
+	// 🌕   [GET] - all posts for single location
+	findByLocationId(location_id) {
+		return db('posts as p')
+			.join('locations as l', 'l.location_id', 'p.location_id')
+			.where('l.location_id', location_id);
+	},
+
 	// 🌕   [GET] - all posts by single user
 	findByUsername(username) {
 		return db('posts as p')

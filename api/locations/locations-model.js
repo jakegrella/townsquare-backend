@@ -6,6 +6,9 @@ module.exports = {
 	findByZipCode(zipCode) {
 		return db('locations').where({ zipCode }).first();
 	},
+	findById(location_id) {
+		return db('locations').where({ location_id }).first();
+	},
 
 	async add(zipCode) {
 		return db('locations').insert({ zipCode });
