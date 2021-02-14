@@ -2,8 +2,23 @@ const db = require('../../data/dbConfig');
 
 module.exports = {
 	// 🌕   [GET] - all posts globally
+	// find() {
+	// 	return db('posts');
+	// },
+
 	find() {
-		return db('posts');
+		return db('posts as p')
+			.join('users as u', 'u.user_id', 'p.user_id')
+			.join('locations as l', 'l.location_id', 'p.location_id')
+			.join('likes as k', 'k.post_id', 'p.post_id')
+			.select(
+				'p.post_id',
+				'p.description',
+				'p.imageUrl',
+				'u.username',
+				'l.zipCode',
+				'k.user_id'
+			);
 	},
 
 	// 🌕   [GET] - all posts for single location
