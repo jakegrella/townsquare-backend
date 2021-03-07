@@ -4,13 +4,13 @@ exports.seed = function (knex) {
 		.then(function () {
 			return knex('users').insert([
 				{
-					username: 'username',
-					password: 'password',
+					username: 'johnnyharris',
+					password: 'johnnyharris',
 					location_id: 1,
 				},
 				{
 					username: 'jake',
-					password: 'password',
+					password: 'jake',
 					location_id: 1,
 				},
 			]);
